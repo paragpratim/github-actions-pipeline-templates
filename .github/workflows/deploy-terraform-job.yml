@@ -27,7 +27,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    env:
+    env: # Common environment variables for Terraform
       TF_VAR_project_id: ${{ secrets.DATAFLOW_TEST_PROJECT_ID }}
       TF_VAR_my_domain: ${{ secrets.MY_DOMAIN }}
     steps:

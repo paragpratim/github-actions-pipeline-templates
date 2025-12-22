@@ -1,0 +1,33 @@
+# Composite action for Terraform Init and Validate
+
+name: 'Terraform Init and Validate'
+description: 'Run Terraform init and validate as steps in a GitHub Actions workflow'
+inputs:
+  terraform_version:
+    description: 'Terraform version to use'
+    required: false
+    default: '1.6.0'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: ${{ inputs.terraform_version }}
+        terraform_wrapper: false
+
+    - name: Terraform Format Check
+      working-directory: terraform
+      shell: bash
+      run: terraform fmt -check
+
+    - name: Terraform Init
+      working-directory: terraform
+      shell: bash
+      run: terraform init
+
+    - name: Terraform Validate
+      working-directory: terraform
+      shell: bash
+      run: terraform validate

@@ -1,4 +1,4 @@
-# Composite action for Terraform Init and Validate
+# Composite reusable action for Terraform Init and Validate
 
 name: 'Terraform Init and Validate'
 description: 'Run Terraform init and validate as steps in a GitHub Actions workflow'
